@@ -42,29 +42,53 @@ public class Task {
   @ManyToMany(mappedBy = "prerequisites")
   private List<Task> prerequisiteOf;
 
-  public int getId() { return id; }
+  public int getId() {
+    return id;
+  }
 
-  public void setId(int id) { this.id = id; }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-  public User getUser() { return user; }
+  public User getUser() {
+    return user;
+  }
 
-  public void setUser(User user) { this.user = user; }
+  public void setUser(User user) {
+    this.user = user;
+  }
 
-  public int getNumInQueue() { return numInQueue; }
+  public int getNumInQueue() {
+    return numInQueue;
+  }
 
-  public void setNumInQueue(int numInQueue) { this.numInQueue = numInQueue; }
+  public void setNumInQueue(int numInQueue) {
+    this.numInQueue = numInQueue;
+  }
 
-  public int getSolveTime() { return solveTime; }
+  public int getSolveTime() {
+    return solveTime;
+  }
 
-  public void setSolveTime(int solveTime) { this.solveTime = solveTime; }
+  public void setSolveTime(int solveTime) {
+    this.solveTime = solveTime;
+  }
 
-  public List<Task> getPrerequisites() { return prerequisites; }
+  public List<Task> getPrerequisites() {
+    return prerequisites;
+  }
 
-  public void setPrerequisites(List<Task> prerequisites) { this.prerequisites = prerequisites; }
+  public void setPrerequisites(List<Task> prerequisites) {
+    this.prerequisites = prerequisites;
+  }
 
-  public List<Task> getPrerequisiteOf() { return prerequisiteOf; }
+  public List<Task> getPrerequisiteOf() {
+    return prerequisiteOf;
+  }
 
-  public void setPrerequisiteOf(List<Task> prerequisiteOf) { this.prerequisiteOf = prerequisiteOf; }
+  public void setPrerequisiteOf(List<Task> prerequisiteOf) {
+    this.prerequisiteOf = prerequisiteOf;
+  }
 
   @Override
   public boolean equals(Object o) {
