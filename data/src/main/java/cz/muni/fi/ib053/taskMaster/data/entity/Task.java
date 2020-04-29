@@ -3,6 +3,7 @@ package cz.muni.fi.ib053.taskMaster.data.entity;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
 /**
@@ -18,7 +18,7 @@ import javax.validation.constraints.Min;
  *
  * @author Vojtěch Kovářík
  */
-@Table(name = "tasks")
+@Entity
 public class Task {
 
   @Id
@@ -35,8 +35,10 @@ public class Task {
   private int solveTime;
 
   @ManyToMany
-  @JoinTable(name = "prerequisites", joinColumns = @JoinColumn(name="taskId", referencedColumnName = "id"),
-          inverseJoinColumns = @JoinColumn(name = "prerequisiteId", referencedColumnName = "id") )
+  @JoinTable(name = "prerequisites",
+      joinColumns = @JoinColumn(name = "taskId", referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "prerequisiteId",
+          referencedColumnName = "id"))
   private List<Task> prerequisites;
 
   @ManyToMany(mappedBy = "prerequisites")
@@ -91,18 +93,18 @@ public class Task {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
+  public boolean equals(Object obj) {
+    if (this == obj) {
       return true;
     }
-    if (o == null) {
+    if (obj == null) {
       return false;
     }
-    if (!(o instanceof Task)) {
+    if (!(obj instanceof Task)) {
       return false;
     }
 
-    Task task = (Task) o;
+    Task task = (Task) obj;
     if (!Objects.equals(user, task.getUser())) return false;
     if (numInQueue != task.getNumInQueue()) return false;
     if (solveTime != task.getSolveTime()) return false;
@@ -126,12 +128,12 @@ public class Task {
   @Override
   public String toString() {
     return "Task{" +
-            "id=" + id +
-            ", user=" + user +
-            ", numInQueue=" + numInQueue +
-            ", solveTime=" + solveTime +
-            ", prerequisites=" + prerequisites +
-            ", prerequisiteOf=" + prerequisiteOf +
-            '}';
+        "id=" + id +
+        ", user=" + user +
+        ", numInQueue=" + numInQueue +
+        ", solveTime=" + solveTime +
+        ", prerequisites=" + prerequisites +
+        ", prerequisiteOf=" + prerequisiteOf +
+        '}';
   }
 }
