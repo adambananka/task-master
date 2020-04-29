@@ -1,7 +1,5 @@
 package cz.muni.fi.ib053.taskMaster.data.entity;
 
-import com.sun.istack.internal.NotNull;
-
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,8 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * Represents user entity.
+ *
+ * @author Adam Baňanka
+ */
 @Entity
 @Table(name = "users")
 public class User {
