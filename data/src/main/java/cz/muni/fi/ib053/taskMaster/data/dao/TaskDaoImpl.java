@@ -22,12 +22,19 @@ public class TaskDaoImpl extends AbstractDaoImpl<Task> implements TaskDao {
 
   @Override
   public void update(Task task) {
+    if (task == null) {
+      throw new IllegalArgumentException(
+             "Task cannot be null");
+    }
+    LOG.info("update task {}", task);
+    em.getTransaction().begin();
+    em.getTransaction().commit();
   }
 
   @Override
   public List<Task> findByUser(User user) {
     if (user == null) {
-      throw new IllegalArgumentException("Invalid login value.");
+      throw new IllegalArgumentException("Invalid user value.");
     }
     LOG.info("find task by user {}", user);
     return em.createQuery("SELECT t FROM Task t WHERE t.user = :user",

@@ -14,8 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 import javax.validation.ValidationException;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -120,6 +118,7 @@ public class TaskDaoImplTest {
 
   @Test
   public void testFindAll() {
+    assertEquals(0, taskDao.findAll().size());
     taskDao.create(task1);
     assertEquals(1, taskDao.findAll().size());
     taskDao.create(task2);
@@ -134,5 +133,22 @@ public class TaskDaoImplTest {
     taskDao.create(task2);
     task2.setUser(user1);
     assertEquals(task2, taskDao.findByUser(user1).get(0));
+  }
+
+  @Test
+  public void testFindByUser_multipleTasks() {
+    User user1 = new User();
+
+    taskDao.create(task1);
+    taskDao.create(task2);
+    task2.setUser(user1);
+    task1.setUser(user1);
+    assertEquals(2, taskDao.findByUser(user1).size());
+  }
+
+  @Test
+  public void testFindByUser_emptyDB() {
+    User user1 = new User();
+    assertEquals(0, taskDao.findByUser(user1).size());
   }
 }
