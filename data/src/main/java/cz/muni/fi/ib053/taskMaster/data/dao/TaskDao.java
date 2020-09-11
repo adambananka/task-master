@@ -13,12 +13,6 @@ import java.util.List;
  * @author Vojtěch Kovářík
  */
 public interface TaskDao extends AbstractDao<Task> {
-  /**
-   * Updates given task in database.
-   *
-   * @param task entity to be updated
-   */
-  void update(Task task);
 
   /**
    * Retrieves user with given login from database.
